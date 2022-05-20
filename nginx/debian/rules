@@ -78,7 +78,6 @@ full_configure_flags := \
             --with-http_xslt_module \
             --with-mail_ssl_module \
             --add-module=$(MODULESDIR)/nginx-auth-pam \
-            --add-module=$(MODULESDIR)/nginx-dav-ext-module \
             --add-module=$(MODULESDIR)/nginx-echo \
             --add-module=$(MODULESDIR)/nginx-upstream-fair \
             --add-module=$(MODULESDIR)/ngx_http_substitutions_filter_module
@@ -86,7 +85,6 @@ full_configure_flags := \
 extras_configure_flags := \
             $(common_configure_flags) \
             --with-http_addition_module \
-            --with-http_dav_module \
             --with-http_flv_module \
             --with-http_geoip_module \
             --with-http_gzip_static_module \
@@ -101,7 +99,6 @@ extras_configure_flags := \
             --add-module=$(MODULESDIR)/headers-more-nginx-module \
             --add-module=$(MODULESDIR)/nginx-auth-pam \
             --add-module=$(MODULESDIR)/nginx-cache-purge \
-            --add-module=$(MODULESDIR)/nginx-dav-ext-module \
             --add-module=$(MODULESDIR)/nginx-development-kit \
             --add-module=$(MODULESDIR)/nginx-echo \
             --add-module=$(MODULESDIR)/nginx-upstream-fair \
