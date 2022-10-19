@@ -26,7 +26,7 @@ function ppa_lib_echo()
 ppa_lib_echo "Execute: apt-get update, please wait"
 sudo apt-get update || ppa_error "Unable to update packages, exit status = " $?
 ppa_lib_echo "Installing required packages, please wait"
-sudo apt-get -y install git dh-make devscripts debhelper dput gnupg-agent dh-systemd vim || ppa_error "Unable to install packages, exit status = " $?
+sudo apt-get -y install git dh-make devscripts debhelper dput gnupg-agent dh-systemd ubuntu-dev-tools || ppa_error "Unable to install packages, exit status = " $?
 
 # Lets Clone Launchpad repository
 ppa_lib_echo "Copy Launchpad Debian files, please wait"
@@ -133,4 +133,5 @@ cp -av ~/PPA/nginx/modules ~/PPA/nginx/nginx-${NGINX_VERSION}/debian/ \
 || ppa_error "Unable to copy modules files, exit status = " $?
 
 # Edit changelog
-nano ~/PPA/nginx/nginx-${NGINX_VERSION}/debian/changelog
+cd ~/PPA/nginx/nginx-${NGINX_VERSION} || exit 1
+debchange -R -D stable
