@@ -129,8 +129,11 @@ git clone https://github.com/vozlt/nginx-module-vts.git || ppa_error "Unable to 
 ppa_lib_echo "16/16 ngx_brotli"
 git clone --recursive https://github.com/eustas/ngx_brotli || ppa_error "Unable to download ngx_brotli, exit status = " $?
 
-cp -av ~/PPA/nginx/modules ~/PPA/nginx/nginx-${NGINX_VERSION}/debian/ \
-|| ppa_error "Unable to copy modules files, exit status = " $?
+cp -av ~/PPA/nginx/modules ~/PPA/nginx/nginx-${NGINX_VERSION}/debian/ ||
+    ppa_error "Unable to copy modules files, exit status = " $?
+
+# Update Nginx patch
+wget -O ~/PPA/nginx/nginx-${NGINX_VERSION}/debian/patches/nginx.patch https://raw.githubusercontent.com/kn007/patch/master/nginx.patch || "Unable to download nginx patch, exit status = " $?
 
 # Edit changelog
 cd ~/PPA/nginx/nginx-${NGINX_VERSION} || exit 1
