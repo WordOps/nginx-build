@@ -4,7 +4,7 @@
 
 **WARNING:** *Before starting go through the links on the [reference page](https://github.com/WordOps/nginx-build/wiki/References).*
 
-**NOTE:** *This guide is for building the version 1.16.1 of Nginx. You might need to change the commands according to the latest stable version of Nginx.*
+**NOTE:** *This guide is for building the version 1.22.1 of Nginx. You might need to change the commands according to the latest stable version of Nginx.*
 
 1. Start the container.
 
@@ -21,6 +21,7 @@ docker run --name=nginx-build -dit -v $PWD:/root/data virtubox/nginx-build bash
 ```bash
 docker exec -it nginx-build bash
 ```
+
 4. Import the your GPG keys.
 
 ```bash
@@ -48,34 +49,27 @@ export DEBFULLNAME="WordOps"
 bash ppa.sh wordops@example.com
 ```
 
-8. To update the changelog and increment the package version, use the command :
+At the end, the script will open your favorite editor to add content into the changelog.
 
 ```bash
-cd ~/PPA/nginx/nginx-1.16.1
-debchange -i -D xenial
-```
+nginx (1.22.1-1ppa~stable) jammy; urgency=medium
 
-It will open your favorite editor to add content into the changelog
+  * Update to Nginx 1.22.1 in response to HTTP/2 vulnerabilities
 
-```bash
-nginx (1.16.1-1ppa~stable~ubuntu16.04.2) xenial; urgency=medium
-
-  * Update to Nginx 1.16.1 in response to HTTP/2 vulnerabilities
-
- -- Thomas SUCHON <thomas@virtubox.net>  Fri, 23 Aug 2019 01:03:00 +0530
+ -- Thomas SUCHON <thomas@virtubox.net>  Fri, 19 Oct 2022 01:03:00 +0530
 ```
 
 This revision number of the build in bold has to be changed to build it
-successfully.  (1.16.1-1ppa~stable~ubuntu16.04.2) This will download the latest Nginx source, the modules from their respective
+successfully.  (1.22.1-1ppa~stable) This will download the latest Nginx source, the modules from their respective
 Github links, modify the changelog and create the whole directory structure at `~/PPA/nginx`
 
-9. Go to the nginx directory (check the latest version)
+8. Go to the nginx directory (check the latest version)
 
 ```bash
-cd ~/PPA/nginx/nginx-1.16.1
+cd ~/PPA/nginx/nginx-1.22.1
 ```
 
-10. Start the packaging with the GPG keys that you have exported. If in doubt about GPGKEY, you can check [this page.](https://github.com/WordOps/nginx-build/wiki/Generating-GPG-Keys)
+9. Start the packaging with the GPG keys that you have exported. If in doubt about GPGKEY, you can check [this page.](https://github.com/WordOps/nginx-build/wiki/Generating-GPG-Keys)
 
 ```bash
 debuild -S -sd -k97BAD476
@@ -87,44 +81,68 @@ This is the key ID for WordOps GPG key. You will be asked for a password. Get th
 
 #### Opensuse Build Service
 
-11. Checkout the repository. If you don't have a repository, go to [Opensuse Build Service](https://build.opensuse.org), and create one
+10. Checkout the repository. If you don't have a repository, go to [Opensuse Build Service](https://build.opensuse.org), and create one
 
 ```bash
 cd ~
 osc co home:virtubox:WordOps
 ```
+
 **Warning**: The repository name is case sensitive.
 
-12. Remove the current files from the nginx repo.
+11. Remove the current files from the nginx repo.
 
 ```bash
 cd home\:virtubox\:WordOps/nginx
 osc rm *
 ```
 
-13. The files that need to be uploaded will be generated in the `~/PPA/nginx`
+12. The files that need to be uploaded will be generated in the `~/PPA/nginx`
 directory. Only the files you already see [here](https://build.opensuse.org/package/show/home:virtubox:WordOps/nginx)
 will be necessary.
 Copy the files from `~/PPA/nginx` to `~/home:virtubox/nginx`.
 
 ```bash
-rsync -avzP --exclude="modules" --exclude="nginx-1.16.1" ~/PPA/nginx/ ~/home:virtubox:WordOps/nginx/
+rsync -avzP --exclude="modules" --exclude="nginx-1.22.1" ~/PPA/nginx/ ~/home:virtubox:WordOps/nginx/
 ```
 
-14. Add the new files to the repo.
+13. Add the new files to the repo.
 
 ```bash
 osc add *
 ```
 
-15. Commit and push the changes.
+14. Commit and push the changes.
 
 ```bash
-osc ci -m “Revision message describing any changes”
+osc ci -m "Revision message describing any changes"
 ```
 
 #### LaunchPad PPA
 
+For LauchPad PPA, nginx package name have to include the Ubuntu release you want to build. For this we will use the tool backportpackage to create each version of nginx package we want.
 
+1. Go into the nginx directory
 
-17. Pat yourself on the back for a job well done. :)
+```bash
+cd ~/PPA/nginx
+```
+
+2. Then use `backportpackage` on the .dsc file previously built for OpenSuse repository
+
+```bash
+backportpackage -r -w . -d bionic -d jammy -d focal -k97BAD476 nginx_1.22.1-1ppa~stable.dsc
+```
+
+Replace `-k97BAD476` with your GPG key ID.
+It will build 3 nginx packages, for Ubuntu 18.04 (bionic), Ubuntu 20.04 (focal) and Ubuntu 22.04 (jammy).
+
+3. Upload your package to LaunchPad PPA
+
+```bash
+dput ppa:virtubox/nginx nginx_1.22.1-1ppa~stable~ubuntu18.04.1_source.changes
+dput ppa:virtubox/nginx nginx_1.22.1-1ppa~stable~ubuntu20.04.1_source.changes
+dput ppa:virtubox/nginx nginx_1.22.1-1ppa~stable~ubuntu22.04.1_source.changes
+```
+
+You have to upload an indivual nginx package for each Ubuntu release you want to support.

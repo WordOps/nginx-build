@@ -1,5 +1,5 @@
 site_name: Nginx debian package build Documentation
-copyright: 'Copyright &copy; 2019 WordOps - <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img style="display:inline;" alt="Licence Creative Commons" style="border-width:0" src="https://docs.wordops.net/images/80x15.png" /></a>'
+copyright: 'Copyright &copy; 2022 WordOps - <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img style="display:inline;" alt="Licence Creative Commons" style="border-width:0" src="https://docs.wordops.net/images/80x15.png" /></a>'
 repo_url: https://github.com/WordOps/nginx-build/
 edit_uri: "https://github.com/WordOps/nginx-build/edit/master/docs/"
 remote_branch: gh-pages
@@ -37,16 +37,15 @@ markdown_extensions:
 # block div
   - admonition
   - meta
+  - attr_list
 
 extra:
   social:
-    - type: globe
+    - icon: fontawesome/solid/globe
       link: https://wordops.net
-    - type: github-alt
+    - icon: fontawesome/brands/github-alt
       link: https://github.com/WordOps
-    - type: twitter
+    - icon: fontawesome/brands/twitter
       link: https://twitter.com/WordOps_
-    - type: slack
-      link: https://community.wordops.io/slack
-    - type: comments
+    - icon: fontawesome/solid/comment
       link: https://community.wordops.net
