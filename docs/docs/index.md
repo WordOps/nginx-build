@@ -2,7 +2,7 @@
 
 ### Building your package
 
-**WARNING:** *Before starting go through the links on the [reference page](https://github.com/WordOps/nginx-build/wiki/References).*
+**WARNING:** *Before starting go through the links on the [reference page](https://wordops.github.io/nginx-build/reference/).*
 
 **NOTE:** *This guide is for building the version 1.22.1 of Nginx. You might need to change the commands according to the latest stable version of Nginx.*
 
@@ -14,7 +14,7 @@ cd ~/nginx-build
 docker run --name=nginx-build -dit -v $PWD:/root/data virtubox/nginx-build bash
 ```
 
-2. Copy the GPG keys(both public and private) to `~/nginx-build` and if you don't have one, you can check [here](https://github.com/WordOps/nginx-build/wiki/Generating-GPG-Keys), how to create one.
+2. Copy the GPG keys(both public and private) to `~/nginx-build` and if you don't have one, you can check [here](https://wordops.github.io/nginx-build/GPG-keys-help/), how to create one.
 
 3. Enter the container.
 
@@ -69,7 +69,7 @@ Github links, modify the changelog and create the whole directory structure at `
 cd ~/PPA/nginx/nginx-1.22.1
 ```
 
-9. Start the packaging with the GPG keys that you have exported. If in doubt about GPGKEY, you can check [this page.](https://github.com/WordOps/nginx-build/wiki/Generating-GPG-Keys)
+9. Start the packaging with the GPG keys that you have exported. If in doubt about GPGKEY, you can check [this page.](https://wordops.github.io/nginx-build/GPG-keys-help/)
 
 ```bash
 debuild -S -sd -k97BAD476
