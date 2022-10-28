@@ -9,7 +9,7 @@
       
       
       <link rel="icon" href="assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.6">
+      <meta name="generator" content="mkdocs-1.4.1, mkdocs-material-8.5.7">
     
     
       
@@ -433,7 +433,7 @@
 
 <h2 id="the-process">The Process<a class="headerlink" href="#the-process" title="Permanent link">&para;</a></h2>
 <h3 id="building-your-package">Building your package<a class="headerlink" href="#building-your-package" title="Permanent link">&para;</a></h3>
-<p><strong>WARNING:</strong> <em>Before starting go through the links on the <a href="https://github.com/WordOps/nginx-build/wiki/References">reference page</a>.</em></p>
+<p><strong>WARNING:</strong> <em>Before starting go through the links on the <a href="https://wordops.github.io/nginx-build/reference/">reference page</a>.</em></p>
 <p><strong>NOTE:</strong> <em>This guide is for building the version 1.22.1 of Nginx. You might need to change the commands according to the latest stable version of Nginx.</em></p>
 <ol>
 <li>Start the container.</li>
@@ -444,7 +444,7 @@ docker run --name<span class="o">=</span>nginx-build -dit -v <span class="nv">$P
 </code></pre></div>
 <ol>
 <li>
-<p>Copy the GPG keys(both public and private) to <code>~/nginx-build</code> and if you don't have one, you can check <a href="https://github.com/WordOps/nginx-build/wiki/Generating-GPG-Keys">here</a>, how to create one.</p>
+<p>Copy the GPG keys(both public and private) to <code>~/nginx-build</code> and if you don't have one, you can check <a href="https://wordops.github.io/nginx-build/GPG-keys-help/">here</a>, how to create one.</p>
 </li>
 <li>
 <p>Enter the container.</p>
@@ -491,7 +491,7 @@ Github links, modify the changelog and create the whole directory structure at <
 <div class="highlight"><pre><span></span><code><span class="nb">cd</span> ~/PPA/nginx/nginx-1.22.1
 </code></pre></div>
 <ol>
-<li>Start the packaging with the GPG keys that you have exported. If in doubt about GPGKEY, you can check <a href="https://github.com/WordOps/nginx-build/wiki/Generating-GPG-Keys">this page.</a></li>
+<li>Start the packaging with the GPG keys that you have exported. If in doubt about GPGKEY, you can check <a href="https://wordops.github.io/nginx-build/GPG-keys-help/">this page.</a></li>
 </ol>
 <div class="highlight"><pre><span></span><code>debuild -S -sd -k97BAD476
 </code></pre></div>
@@ -653,10 +653,10 @@ dput ppa:virtubox/nginx nginx_1.22.1-1ppa~stable~ubuntu22.04.1_source.changes
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.078830c0.min.js"></script>
+      <script src="assets/javascripts/bundle.8492ddcf.min.js"></script>
       
     
   </body>
