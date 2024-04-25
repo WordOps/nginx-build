@@ -6,7 +6,7 @@ fi
 
 # Define NGINX version
 PACKAGE_NAME="nginx"
-NGINX_VERSION="$(curl -sL https://nginx.org/en/download.html 2>&1 | grep -E -o 'nginx\-[0-9.]+\.tar[.a-z]*' | awk -F "nginx-" '/.tar.gz$/ {print $2}' | sed -e 's|.tar.gz||g' | head -n 2 | grep 1.24 2>&1)"
+NGINX_VERSION="$(curl -sL https://nginx.org/en/download.html 2>&1 | grep -E -o 'nginx\-[0-9.]+\.tar[.a-z]*' | awk -F "nginx-" '/.tar.gz$/ {print $2}' | sed -e 's|.tar.gz||g' | head -n 2 | grep 1.26 2>&1)"
 EMAIL_ADDRESS="$1"
 
 TPUT_RESET=$(tput sgr0)
@@ -72,13 +72,8 @@ git clone --depth=1 https://github.com/sto/ngx_http_auth_pam_module nginx-auth-p
     ppa_error "Unable to clone ngx_http_auth_pam_module repo, exit status = " $?
 
 ppa_lib_echo "3/16 nginx-cache-purge"
-git clone --depth=1 https://github.com/FRiCKLE/ngx_cache_purge.git nginx-cache-purge ||
+git clone --depth=1 https://github.com/nginx-modules/ngx_cache_purge nginx-cache-purge ||
     ppa_error "Unable to clone nginx-cache-purge repo, exit status = " $?
-
-cd nginx-cache-purge || exit 1
-patch -p1 <~/data/nginx-build/patches/ngx_cache_purge.patch || ppa_error "Unable to patch nginx-cache-purge , exit status = " $?
-
-cd ~/PPA/nginx/modules || exit 1
 
 ppa_lib_echo "4/16 Cloudflare zlib"
 git clone --depth=1 https://github.com/cloudflare/zlib.git -b gcc.amd64 zlib-cf
@@ -134,7 +129,7 @@ cp -av ~/PPA/nginx/modules ~/PPA/nginx/nginx-${NGINX_VERSION}/debian/ ||
     ppa_error "Unable to copy modules files, exit status = " $?
 
 # Update Nginx patch
-wget -O ~/PPA/nginx/nginx-${NGINX_VERSION}/debian/patches/nginx.patch https://raw.githubusercontent.com/kn007/patch/master/nginx.patch || "Unable to download nginx patch, exit status = " $?
+wget -O ~/PPA/nginx/nginx-${NGINX_VERSION}/debian/patches/nginx.patch https://raw.githubusercontent.com/kn007/patch/master/nginx_dynamic_tls_records.patch || "Unable to download nginx patch, exit status = " $?
 
 # Edit changelog
 cd ~/PPA/nginx/nginx-${NGINX_VERSION} || exit 1
