@@ -51,7 +51,7 @@ cd nginx-${NGINX_VERSION} ||
 ppa_lib_echo "Execute: dh_make --single --copyright gpl --email $EMAIL_ADDRESS --createorig, please wait"
 dh_make --single --copyright gpl --email "$EMAIL_ADDRESS" --createorig ||
     ppa_error "Unable to run dh_make command, exit status = " $?
-rm debian/*.ex debian/*.EX ||
+rm -f debian/*.ex debian/*.EX ||
     ppa_error "Unable to remove unwanted files, exit status = " $?
 
 # Let's copy files
