@@ -119,7 +119,7 @@ ppa_lib_echo "14/15 nginx-module-vts "
 git clone --depth=1 https://github.com/vozlt/nginx-module-vts.git || ppa_error "Unable to download nginx-module-vts, exit status = " $?
 
 ppa_lib_echo "15/15 ngx_brotli"
-git clone --recursive --depth=1 https://github.com/google/ngx_brotli /usr/local/src/ngx_brotli -q || ppa_error "Unable to download ngx_brotli, exit status = " $?
+git clone --recursive --depth=1 https://github.com/google/ngx_brotli -q || ppa_error "Unable to download ngx_brotli, exit status = " $?
 cd ngx_brotli || exit 1
 git submodule update --init
 
