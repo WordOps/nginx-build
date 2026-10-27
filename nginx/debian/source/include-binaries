@@ -36,3 +36,9 @@ debian/modules/ngx_brotli/deps/brotli/research/esaxx/waf
 debian/modules/ngx_brotli/deps/brotli/research/img/enwik9_diff.png
 debian/modules/ngx_brotli/deps/brotli/research/img/enwik9_brotli.png
 debian/modules/ngx_brotli/deps/brotli/research/img/enwik9_opt.png
+debian/modules/ngx_brotli/deps/brotli/js/test_data.tar
+debian/modules/ngx_brotli/deps/brotli/tests/testdata/zerosukkanooa
+debian/modules/ngx_brotli/deps/brotli/tests/testdata/cp1251-utf16le.compressed
+debian/modules/ngx_brotli/deps/brotli/tests/testdata/zerosukkanooa.compressed
+debian/modules/ngx_brotli/deps/brotli/tests/testdata/cp1251-utf16le
+debian/modules/ngx_brotli/deps/brotli/tests/testdata/cp852-utf8.compressed
